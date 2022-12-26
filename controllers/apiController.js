@@ -38,7 +38,7 @@ module.exports = {
             message: "Success add media",
             details: {
               id: media.id,
-              image: `${req.get("host")}/${media.image}`,
+              image: `${process.env.HOSTNAMES}/${media.image}`,
             },
           });
         }
@@ -54,7 +54,7 @@ module.exports = {
       });
 
       const mappedMedia = media.map((m) => {
-        m.image = `${req.get("host")}/${m.image}`;
+        m.image = `${process.env.HOSTNAMES}/${m.image}`;
         return m;
       });
       res.status(200).json({
@@ -127,7 +127,7 @@ module.exports = {
             message: "Success update media",
             details: {
               id: newMedia.id,
-              image: `${req.get("host")}/${newMedia.image}`,
+              image: `${process.env.HOSTNAMES}/${newMedia.image}`,
             },
           });
         }
