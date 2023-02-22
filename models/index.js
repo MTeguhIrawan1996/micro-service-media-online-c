@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const mysql2 = require("mysql2");
 const Sequelize = require("sequelize");
 const process = require("process");
 const basename = path.basename(__filename);
@@ -20,6 +21,11 @@ if (config.use_env_variable) {
     config
   );
 }
+
+if (config.dialect === "mysql") {
+  config.dialectModule = mysql2;
+}
+new Sequelize(config);
 
 fs.readdirSync(__dirname)
   .filter((file) => {
